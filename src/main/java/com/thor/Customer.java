@@ -1,9 +1,28 @@
 package com.thor;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+
 import java.util.Objects;
 
+@Entity
 public class Customer {
-  private Integer id;
+
+  @Id
+  @SequenceGenerator(
+    name = "customer_id_sequence",
+    sequenceName = "customer_id_sequence",
+    allocationSize = 1
+  )
+  @GeneratedValue(
+    strategy = GenerationType.SEQUENCE,
+    generator = "customer_id_sequence"
+  )
+  private  Integer id;
+
   private String name;
   private String email;
   private Integer age;
